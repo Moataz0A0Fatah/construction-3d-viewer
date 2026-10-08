@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Construction 3D Viewer</title>
+		<script type="module" crossorigin src="/construction-3d-viewer/assets/index-bc_XOhD3.js"></script>
+		<link rel="stylesheet" crossorigin href="/construction-3d-viewer/assets/index-CXWOAkyi.css">
+	</head>
+	<body>
+		<div id="toast" class="toast"></div>
+
+		<!-- ================= SELECTOR PAGE ================= -->
+		<div id="selector-page">
+			<header class="selector-header">
+				<h1>🏗️ Construction Course Viewer</h1>
+				<p>Select a topic to explore its 3D model and drawing sheet.</p>
+			</header>
+
+			<div id="topic-grid" class="topic-grid"></div>
+
+			<footer class="app-footer">
+				Created by <strong>Dr. Moataz Abdel Fatah Mohamed</strong>, Egypt, Cairo, 2026
+			</footer>
+		</div>
+
+		<!-- ================= VIEWER PAGE ================= -->
+		<div id="viewer-page" class="hidden">
+			<header id="toolbar">
+				<button id="btn-back" title="Back to topics">← Topics</button>
+				<h1 id="topic-title">—</h1>
+				<div class="tools">
+					<button id="btn-measure">📏 Measure</button>
+					<button id="btn-clear">✕ Clear</button>
+					<button id="btn-lights">💡 Lights</button>
+					<button id="btn-debug">🔴 Corners</button>
+					<button id="btn-open-pdf">🔗 Open PDF</button>
+					<button id="btn-dwg">⬇ DWG</button>
+				</div>
+			</header>
+
+			<main>
+				<div id="viewport"></div>
+
+				<aside id="lights-panel" class="panel hidden">
+					<div class="panel-header">
+						<h2>Lighting</h2>
+						<button id="btn-close-lights">✕</button>
+					</div>
+
+					<div id="lights-content">
+						<div class="light-section">
+							<label class="light-label">Background</label>
+							<select id="preset-bg" class="light-select">
+								<option value="#f5f7fa">Bright day (default)</option>
+								<option value="#ffffff">Pure white</option>
+								<option value="#dbeafe">Soft blue</option>
+								<option value="#fed7aa">Sunset</option>
+								<option value="#1e293b">Night</option>
+							</select>
+						</div>
+
+						<div class="light-section">
+							<div class="light-row">
+								<label class="light-label">Ambient</label>
+								<span class="light-value" id="val-ambient">0.90</span>
+							</div>
+							<input
+							  id="slider-ambient"
+							  type="range"
+							  min="0"
+							  max="2"
+							  step="0.05"
+							  value="0.9"
+							  class="light-slider"
+              />
+						</div>
+
+						<div class="light-section">
+							<div class="light-row">
+								<label class="light-label">Main light</label>
+								<span class="light-value" id="val-main">1.10</span>
+							</div>
+							<input
+							  id="slider-main"
+							  type="range"
+							  min="0"
+							  max="3"
+							  step="0.05"
+							  value="1.1"
+							  class="light-slider"
+              />
+						</div>
+
+						<div class="light-section">
+							<label class="light-label">Main light direction</label>
+							<div class="direction-grid">
+								<button data-dir="top" title="Top">↑</button>
+								<button data-dir="front" title="Front">N</button>
+								<button data-dir="right" title="Right">E</button>
+								<button data-dir="left" title="Left">W</button>
+								<button data-dir="back" title="Back">S</button>
+								<button data-dir="reset" title="Reset">⟲</button>
+							</div>
+						</div>
+
+						<div class="light-section">
+							<div class="light-row">
+								<label class="light-label">Fill light</label>
+								<span class="light-value" id="val-fill">0.40</span>
+							</div>
+							<input
+							  id="slider-fill"
+							  type="range"
+							  min="0"
+							  max="2"
+							  step="0.05"
+							  value="0.4"
+							  class="light-slider"
+              />
+						</div>
+
+						<div class="light-section">
+							<div class="light-row">
+								<label class="light-label">Extra lights</label>
+								<button id="btn-add-light" class="mini-btn">+ Add</button>
+							</div>
+							<div id="extra-lights-list" class="extra-lights-list">
+								<p class="hint">No extra lights. Click "+ Add" to create one.</p>
+							</div>
+						</div>
+
+						<div class="light-section">
+							<div class="light-row">
+								<label class="light-label">Shadows</label>
+								<input type="checkbox" id="chk-shadows" checked="" />
+							</div>
+						</div>
+
+						<div class="light-section" style="margin-top: 0.6rem;">
+							<button id="btn-reset-lights" class="wide-btn">Reset all lights</button>
+						</div>
+					</div>
+				</aside>
+
+				<aside id="info-panel" class="panel">
+					<h2>Object Info</h2>
+					<div id="info-content">
+						<p class="hint">Click an object in the model to see its name.</p>
+					</div>
+				</aside>
+			</main>
+
+			<footer class="app-footer">
+				Created by <strong>Dr. Moataz Abdel Fatah Mohamed</strong>, Egypt, Cairo, 2026
+			</footer>
+		</div>
+
+	</body>
+</html>
