@@ -11,7 +11,7 @@ export default defineConfig({
     exclude: ['openskp']
   },
   build: {
-    outDir: 'dist',
+    outDir: 'docs',
     assetsDir: 'assets'
   }
 });
