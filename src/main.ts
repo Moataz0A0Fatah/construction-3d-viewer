@@ -375,7 +375,7 @@ function onPointerMove(event: MouseEvent) {
   const point = result.snap.point;
   snapIndicator.position.copy(point);
   snapIndicator.visible = true;
-  snapIndicator.material.color.set(
+  (snapIndicator.material as THREE.MeshBasicMaterial).color.set(
     result.snap.isCorner ? 0x10b981 : 0xf59e0b
   );
   updateSnapDotScale();
