@@ -19,9 +19,7 @@ const viewport = document.getElementById('viewport')!;
 const infoContent = document.getElementById('info-content')!;
 const toastEl = document.getElementById('toast')!;
 
-// Lights panel
 const lightsPanel = document.getElementById('lights-panel')!;
-const lightsContent = document.getElementById('lights-content')!;
 const btnLights = document.getElementById('btn-lights')!;
 const btnCloseLights = document.getElementById('btn-close-lights')!;
 const presetBg = document.getElementById('preset-bg') as HTMLSelectElement;
@@ -138,7 +136,6 @@ function initViewer() {
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
 
-  // ============ LIGHTING (replaces inline lights) ============
   lighting = new LightingController(scene);
 
   scene.add(new THREE.GridHelper(200, 200, 0xcbd5e1, 0xe2e8f0));
@@ -266,11 +263,9 @@ async function openTopic(topic: Topic) {
         );
         controls.update();
 
-        // Re-aim the main light at the model
         lighting.main.target.position.copy(center);
         lighting.main.target.updateMatrixWorld();
 
-        // Adjust shadow camera to fit the model
         const half = maxDim * 1.2;
         lighting.main.shadow.camera.left = -half;
         lighting.main.shadow.camera.right = half;
@@ -574,7 +569,8 @@ async function downloadFileAsBlob(
 // ============ LIGHTS PANEL ============
 function renderExtraLights() {
   if (lighting.extras.length === 0) {
-    extraLightsList.innerHTML = '<p class="hint">No extra lights. Click "+ Add" to create one.</p>';
+    extraLightsList.innerHTML =
+      '<p class="hint">No extra lights. Click "+ Add" to create one.</p>';
     return;
   }
 
@@ -600,7 +596,6 @@ function renderExtraLights() {
     extraLightsList.appendChild(item);
   });
 
-  // Wire up intensity sliders
   extraLightsList.querySelectorAll<HTMLInputElement>('input[type=range]').forEach((slider) => {
     slider.addEventListener('input', () => {
       const id = Number(slider.dataset.id);
@@ -608,7 +603,6 @@ function renderExtraLights() {
     });
   });
 
-  // Wire up remove buttons
   extraLightsList.querySelectorAll<HTMLButtonElement>('.remove-light-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const id = Number(btn.dataset.id);
@@ -667,7 +661,6 @@ function wireLightsPanel() {
 
   chkShadows.addEventListener('change', () => {
     lighting.setShadowsEnabled(chkShadows.checked);
-    // Force a shadow map refresh
     renderer.shadowMap.needsUpdate = true;
   });
 

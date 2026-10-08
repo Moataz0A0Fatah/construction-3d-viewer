@@ -14,9 +14,9 @@ export const topics: Topic[] = [
     title: 'Bearing Walls System',
     description: 'Construction of load-bearing walls and their connections.',
     thumbnailUrl: '/thumbnails/bearing_walls.jpg',
-    modelUrl: '/models/Bearingwalls.glb',
-    sheetUrl: '/sheets/Bearingwalls.pdf',
-    dwgUrl: '/dwg/Bearingwalls.dwg'
+    modelUrl: '/models/bearing_walls.glb',
+    sheetUrl: '/sheets/bearing_walls.pdf',
+    dwgUrl: '/dwg/bearing_walls.dwg'
   },
   {
     id: 'floor1',

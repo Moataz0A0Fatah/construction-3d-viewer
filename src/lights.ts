@@ -1,12 +1,5 @@
 import * as THREE from 'three';
 
-export interface ExtraLight {
-  id: number;
-  color: string;
-  intensity: number;
-  position: THREE.Vector3;
-}
-
 export class LightingController {
   public ambient: THREE.AmbientLight;
   public main: THREE.DirectionalLight;
@@ -19,11 +12,9 @@ export class LightingController {
   constructor(scene: THREE.Scene) {
     this.scene = scene;
 
-    // ---------- AMBIENT ----------
     this.ambient = new THREE.AmbientLight(0xffffff, 0.9);
     scene.add(this.ambient);
 
-    // ---------- MAIN (directional, casts shadows) ----------
     this.main = new THREE.DirectionalLight(0xffffff, 1.1);
     this.main.position.set(20, 30, 10);
     this.main.castShadow = true;
@@ -37,13 +28,11 @@ export class LightingController {
     scene.add(this.main);
     scene.add(this.main.target);
 
-    // ---------- FILL (soft, no shadows) ----------
     this.fill = new THREE.DirectionalLight(0xffffff, 0.4);
     this.fill.position.set(-15, 10, -15);
     scene.add(this.fill);
   }
 
-  // ============ PRESETS ============
   setAmbientIntensity(v: number) {
     this.ambient.intensity = v;
   }
@@ -94,11 +83,9 @@ export class LightingController {
     this.main.castShadow = enabled;
   }
 
-  // ============ EXTRA LIGHTS ============
   addExtraLight(): number {
     const id = this.nextId++;
     const light = new THREE.DirectionalLight(0xffffff, 0.6);
-    // Place extra lights around the origin
     const angle = (this.extras.length * 90 * Math.PI) / 180;
     light.position.set(
       Math.cos(angle) * 30,
@@ -131,7 +118,6 @@ export class LightingController {
     if (found) found.light.color.set(color);
   }
 
-  // ============ RESET ============
   resetAll() {
     this.ambient.intensity = 0.9;
     this.main.intensity = 1.1;
@@ -140,7 +126,6 @@ export class LightingController {
     this.main.castShadow = true;
     this.fill.intensity = 0.4;
 
-    // Remove all extras
     for (const { light } of this.extras) {
       this.scene.remove(light);
       this.scene.remove(light.target);

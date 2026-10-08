@@ -1,12 +1,17 @@
-// vite.config.ts
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/construction-3d-viewer/', // ⬅️ Add this line. Use your repo's exact name.
+  base: '/construction-3d-viewer/',
   server: {
-    fs: { allow: ['..'] }
+    fs: {
+      allow: ['..']
+    }
   },
   optimizeDeps: {
     exclude: ['openskp']
+  },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets'
   }
 });
